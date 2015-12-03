@@ -1,0 +1,187 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+
+ 
+    Created on : Aug 19, 2015, 12:01:54 AM
+    Author     : Ahmed Zaher
+*/
+html,body {
+ 
+ font-family: 'Droid Sans', sans-serif;
+ padding-top:  45px;
+}
+
+
+
+#wait {
+    display: none;
+    position: fixed;
+    margin-top: 20%;
+    margin-left: 50%;  
+    z-index: 10;
+}
+
+#index { 
+    position: fixed;
+    top: 0;
+    bottom: 0; 
+    right: 0;
+    left: 0;
+    background-image: url("../imgs/03920_theodorheussbridge_1366x768.jpg");
+    background-position: center center;
+    background-size: cover; 
+    
+}
+#index  .form-group , #index   .input-group {
+    margin-bottom: 15px;
+}
+ 
+#signUpForm , #logInForm {
+   background-color: rgba(255,255,255,0.77);
+   border-radius: 6px; 
+}
+#logInForm {
+    margin-top: 12%;
+}
+#signUpForm {
+    margin-top: 5%; 
+}
+#signUpLink, #logInLink {
+    cursor: pointer;
+}
+.filter {
+    position: fixed; 
+    margin-left: -5%;
+    z-index: 10;    
+    
+}
+.filter .form-control  {
+   margin-bottom: 5%;
+    
+}
+ 
+
+.products {
+ 
+}
+
+.product {
+    float: left;
+    margin-right: 5%;
+    margin-bottom: 15px;
+    padding-top: 9px;
+    padding-bottom: 7px; 
+    height: 430px;
+    border: 1px solid #c7c7c7;
+    border-radius: 6px;
+}
+.productPicture{
+   height: 40%; 
+}
+.productPicture img{
+   max-height: 100%; 
+   margin:auto;
+}
+
+.productTitle {
+    text-align: center;
+    font-size: 18px;
+    font-weight: 700;
+    height: 14%;
+}
+.productDescription {
+    height: 28%; 
+}
+.productPrice {
+    font-size: 26px;
+    color: crimson;
+    text-align: center;
+    font-style: italic;
+  //  height: 7%;
+}
+.productOrder {
+  //  height: 30%;
+}
+
+.quantityInput {
+        width: 26%;
+    display: inline;
+  //  margin-left: 3%;
+} 
+.orders{
+    
+}
+ .cartOrder {
+  //  height: 100px;
+    border: 1px solid #c7c7c7;
+    border-radius: 6px;
+}
+.cartOrderPic { 
+ 
+}
+.cartOrderPic img{ 
+}
+.carOrderTitle{
+    float: left;
+    font-size: 23px;
+    margin-top: 4%;
+}
+.cartOrderPrice{
+    float: left;
+   font-size: 25px;
+    margin-top: 4%; 
+    color: red;
+}
+.cartOrder .btn {
+    float: right;
+    margin-top: 25%;    
+    
+}
+
+.cart .btn-warning {
+    margin-left: 15%;
+margin-top: 2%;
+     
+}
+/////////
+
+
+
+
+
+
+
+
+
+///////
+
+
+
+/* Large desktops and laptops */
+@media (min-width: 1200px) {
+
+}
+
+/* Landscape tablets and medium desktops */
+@media (min-width: 992px) and (max-width: 1199px) {
+
+}
+
+/* Portrait tablets and small desktops */
+@media (min-width: 768px) and (max-width: 991px) {
+
+}
+
+/* Landscape phones and portrait tablets */
+@media (max-width: 767px) {
+    .product {
+        height: auto;
+    }
+}
+
+/* Portrait phones and smaller */
+@media (max-width: 480px) {
+
+}

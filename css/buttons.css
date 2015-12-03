@@ -1,0 +1,16 @@
+.homeButton{
+	width: 200px; height: 50px;
+}
+.navButton{
+	width: 150px; height: 40px;
+}
+
+
+.filter {
+    line-height:30px;
+    background-color:#eeeeee;
+    height:300px;
+    width:100px;
+    float:left;
+    padding:5px;	      
+}
