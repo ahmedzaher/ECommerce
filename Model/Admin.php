@@ -1,5 +1,4 @@
-<?php 
-require_once './DBController.php';
+<?php  
 class Admin {
 	public $user_name;
 	public $password;

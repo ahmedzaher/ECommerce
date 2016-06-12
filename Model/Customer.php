@@ -1,5 +1,4 @@
-<?php
-require_once 'DBController.php';
+<?php 
 
  
 class Customer{
@@ -39,6 +38,30 @@ class Customer{
         $this->billing_zip = $_billing_zip;
      
     }
+    
+    public static function insert($dbController,$email,$password,$phone,$firstName,$lastName) {
+        $sql = "INSERT INTO customer (email,password,phone,fname,lname,
+            shipping_address,shipping_city,shipping_state,shipping_zip )
+            VALUES('$email','$password','$phone','$firstName','$lastName', "
+                . "'unspecified','unspecified','unspecified','unspecified')";
+ 
+        return $dbController->conn->query($sql);
+    }
+    public static function getCustomerByEmail($dbController, $email) {
+        $sql = "SELECT * FROM Customer WHERE email = '$email'";
+        $result = $dbController->conn->query($sql);
+        if (($result->num_rows) == 0)
+            return false;
+
+        $row = $result->fetch_assoc();
+        $selectedCustomer = new Customer($row["id"], $row["email"], $row["password"], $row["phone"], 
+                $row["fname"], $row["lname"],
+                $row["shipping_address"], $row["shipping_city"], $row["shipping_state"], $row["shipping_zip"],
+                $row["billing_address"], $row["billing_city"], $row["billing_state"], $row["billing_zip"]);
+
+        return $selectedCustomer;
+    }
+
 }
      
 ?>

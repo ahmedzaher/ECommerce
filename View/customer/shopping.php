@@ -1,5 +1,5 @@
 <?php
-require_once './MasterHeader.php';
+require_once '../MasterHeader.php';
 
 
 //load products
@@ -11,7 +11,7 @@ if (isset($_GET['ORDER']) && $_GET['ORDER'] === 'RequestProducts') {
         <div class="productOuter col-md-4 col-sm-6">
             <div class="product col-md-offset-1 col-md-11 "> 
                 <div class="productPicture" style=" ">
-                    <img class="img-responsive" src='<?php echo $products[$i]->picture ?>'> 
+                    <img class="img-responsive" src='<?php echo "../../".$products[$i]->picture ?>'> 
                 </div>
                 <div class="productTitle" style=" ">
                     <?php echo $products[$i]->name ?>
@@ -40,6 +40,7 @@ if (isset($_GET['ORDER']) && $_GET['ORDER'] === 'RequestProducts') {
 if (isset($_GET['ORDER']) && $_GET['ORDER'] === 'AddToCart') {
     ob_end_clean();
     $result = $controller->addToCart($_GET['product-id'], 1); //1 refer to quantity
+    echo $result;
     if ($result == true) {
         echo 'OK';
     } else {
@@ -95,7 +96,7 @@ $subCategories = $controller->getAllSubCategories();
     });
     //loadProducts
     function loadProducts(categoryFilterURL, subCategoryFilterURL) {
-        $.get(location.pathname + "?ORDER=RequestProducts&category=" + categoryFilterURL + "&sub-category=" + subCategoryFilterURL,
+        $.get( "../../Controller/controller.php" + "?REQUEST=LOAD_SHOPPING_PRODUCTS&category=" + categoryFilterURL + "&sub-category=" + subCategoryFilterURL,
                 function (data) {
                     $('#products').empty().html(data);
                 });
@@ -106,6 +107,6 @@ $subCategories = $controller->getAllSubCategories();
 
 </script>
 <?php
-require_once './MasterFooter.php';
+require_once '../MasterFooter.php';
 ?>
  

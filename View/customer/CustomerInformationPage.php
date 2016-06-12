@@ -1,5 +1,5 @@
 <?php
-require_once './MasterHeader.php'; 
+require_once '../MasterHeader.php'; 
 $customer = unserialize($_SESSION['customer']);
 if(isset( $_SESSION['admin']))
 	$admin = unserialize($_SESSION['admin']);

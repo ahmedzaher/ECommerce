@@ -1,5 +1,4 @@
-<?php
-require_once 'DBController.php';
+<?php 
 class Product {
 
     public $id;
@@ -29,7 +28,7 @@ class Product {
     public function update($dbController) {
  
     
-        		$sql = "UPDATE Product SET name = '$this->name', description = '$this->description', quantitiy = "
+        		$sql = "UPDATE product SET name = '$this->name', description = '$this->description', quantitiy = "
                                 . "$this->quantity, price = $this->price, category = '$this->category', sub_category = "
                                 . "'$this->sub_category', visible = '$this->visible', picture = '$this->picture'
           		WHERE id = $this->id "; 
@@ -38,7 +37,7 @@ class Product {
         
     }
     public static function getProduct($dbController, $productId) {
-            $sql = "SELECT * FROM Product WHERE id = $productId";
+            $sql = "SELECT * FROM product WHERE id = $productId";
             $result = $dbController->conn->query($sql);
            
             if($result->num_rows == 0 ) {
@@ -74,7 +73,7 @@ class Product {
         if($isVisable === "false") {
             $condition .= " AND (visible = '1')";
         }
-        $sql = "SELECT * FROM Product WHERE $condition ";  
+        $sql = "SELECT * FROM product WHERE $condition ";  
         $result = $dbController->conn->query($sql);
         
         if ($result->num_rows == 0) {
@@ -82,11 +81,18 @@ class Product {
         }
         $productsArray = array();
         while ($row = $result->fetch_assoc()) {
-            $product = new Product($row['id'],$row['name'], $row['time'], $row['description'], $row['quantitiy'], $row['price'], $row['category'], $row['sub_category'], $row['picture'], $row['visible']);
+            $product = Product::rowToProduct($row);
 
             array_push($productsArray, $product);
         }
         return $productsArray;
+    }
+    
+    public static function rowToProduct($row) {
+        $product = new Product($row['id'],$row['name'], $row['time'], $row['description'], $row['quantitiy'], $row['price'], 
+                $row['category'], $row['sub_category'], $row['picture'], $row['visible']);
+        
+        return $product;
     }
 
 }
