@@ -91,8 +91,11 @@ $subCategories = $controller->getAllSubCategories();
     </div>
 </div>
 <script>
+    $(".navbar-item").removeClass("active");
+    $(".navbar-item").has("a[href='shopping.php']").addClass("active");
     $(document).ready(function () {
         loadProducts("all", "all");
+        
     });
     //loadProducts
     function loadProducts(categoryFilterURL, subCategoryFilterURL) {

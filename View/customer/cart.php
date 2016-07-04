@@ -16,6 +16,8 @@ require_once '../MasterHeader.php';
  
     
 <script>
+    $(".navbar-item").removeClass("active");
+    $(".navbar-item").has("a[href='cart.php']").addClass("active");
     $(document).ready(function () {
         loadCartOrders();
     });

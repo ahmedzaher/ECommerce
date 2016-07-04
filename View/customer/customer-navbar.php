@@ -16,18 +16,18 @@ if ((isset($_SESSION['ACCESS_TYPE']) && $_SESSION['ACCESS_TYPE'] == "CUSTOMER"))
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="shopping.php">Home</a></li>
+                <li  class="navbar-item"><a href="shopping.php">Shopping</a></li>
                 <?php if ($logedIn) { ?>
-                    <li ><a  href="cart.php">Cart</a></li> 
-                    <li><a href="checkout.php">Checkout</a></li> 
-                    <li ><a href="order-tracking.php">Track Order</a></li> 
+                    <li class="navbar-item"><a  href="cart.php">Cart</a></li> 
+                    <li class="navbar-item"><a href="checkout.php">Checkout</a></li> 
+                    <li class="navbar-item" ><a href="order-tracking.php">Track Order</a></li> 
                 <?php } ?>
             </ul>
 
             <ul class="nav navbar-nav navbar-right">
                 <!-- view login button if not login  --> 
                 <?php if ($logedIn) { ?>
-                <li><a href="CustomerInformationPage.php" ><span class="glyphicon glyphicon-user"></span>&nbsp;My Account</a></li>
+                <li class="navbar-item"><a href="CustomerInformationPage.php" ><span class="glyphicon glyphicon-user"></span>&nbsp;My Account</a></li>
                     <li ><a id="logout-header-btn" class="nav-btn"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Log out</a></li> 
                 <?php } else { ?>
                     <li><a id="login-header-btn"  class="nav-btn"><span class="glyphicon glyphicon-log-in"></span>&nbsp;Log in</a></li> 

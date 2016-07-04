@@ -233,7 +233,17 @@ margin-top: 2%;
 }
 
  
+/* navbar */
+.navbar .container-fluid {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    font-size: 15px;
 
+}
+
+.navbar-nav>.active>a {
+    border-radius: 10px;
+}
 
 /* Large desktops and laptops */
 @media (min-width: 1200px) {

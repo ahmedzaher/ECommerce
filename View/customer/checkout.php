@@ -86,6 +86,8 @@ else {
 </div>
 </div>
 <script>
+    $(".navbar-item").removeClass("active");
+    $(".navbar-item").has("a[href='checkout.php']").addClass("active");
     $(".purchase-btn").click(function () {
         var ordersIds = "";
         for (var i = 0; i < $(".checkout-order").length; i++) {

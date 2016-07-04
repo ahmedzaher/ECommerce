@@ -20,7 +20,7 @@
                 
 		$this->conn = new mysqli($this->servername , $this->username , $this->password , $this->database);
 		if($this->conn->connect_error)
-			echo "<script> window.alert('Connecting To Database Failed');</script>"; 
+			echo "<script> showError('Connecting To Database Failed');</script>"; 
 	}
 	function selectAdmin($_user_name){		
 		$sql = "SELECT * FROM admin WHERE user_name = '$_user_name'";  

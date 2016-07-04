@@ -15,6 +15,8 @@ require_once '../MasterHeader.php';
 </div>
 </div>
 <script>
+    $(".navbar-item").removeClass("active");
+    $(".navbar-item").has("a[href='order-tracking.php']").addClass("active");
     $(document).ready(function () {
         $.get("../../Controller/controller.php?REQUEST=TRACK_ORDERS", function (data) {
             if(data == "Failed") {

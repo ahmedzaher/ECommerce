@@ -109,7 +109,10 @@ if(isset($_POST["update"])) {
         </div>
     </div>
  
- 
+<script>
+    $(".navbar-item").removeClass("active");
+    $(".navbar-item").has("a[href='CustomerInformationPage.php']").addClass("active");
+</script>
  
 
  <?php 
