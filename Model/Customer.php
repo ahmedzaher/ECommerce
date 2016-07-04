@@ -48,7 +48,7 @@ class Customer{
         return $dbController->conn->query($sql);
     }
     public static function getCustomerByEmail($dbController, $email) {
-        $sql = "SELECT * FROM Customer WHERE email = '$email'";
+        $sql = "SELECT * FROM customer WHERE email = '$email'";
         $result = $dbController->conn->query($sql);
         if (($result->num_rows) == 0)
             return false;

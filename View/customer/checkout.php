@@ -23,8 +23,7 @@ if ($cartOrder == false) {
             <br><br>
             <span style="color:rgba(85, 85, 85, 0.71);">Shipping Address :</span> &nbsp;&nbsp;
             
-            <textarea style="margin: 0px; height: 95px; width: 276px;" class="form-control">
-                <?php echo $customer->shipping_address; ?>
+            <textarea style="margin: 0px; height: 95px; width: 276px;" class="form-control"><?php echo  $customer->shipping_address; ?>
             </textarea>
         </div>
 

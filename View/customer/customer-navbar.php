@@ -27,7 +27,7 @@ if ((isset($_SESSION['ACCESS_TYPE']) && $_SESSION['ACCESS_TYPE'] == "CUSTOMER"))
             <ul class="nav navbar-nav navbar-right">
                 <!-- view login button if not login  --> 
                 <?php if ($logedIn) { ?>
-                    <li><a href="" ><span class="glyphicon glyphicon-user"></span>&nbsp;My Account</a></li>
+                <li><a href="CustomerInformationPage.php" ><span class="glyphicon glyphicon-user"></span>&nbsp;My Account</a></li>
                     <li ><a id="logout-header-btn" class="nav-btn"><span class="glyphicon glyphicon-log-out"></span>&nbsp;Log out</a></li> 
                 <?php } else { ?>
                     <li><a id="login-header-btn"  class="nav-btn"><span class="glyphicon glyphicon-log-in"></span>&nbsp;Log in</a></li> 

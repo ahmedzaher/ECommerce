@@ -11,10 +11,10 @@
         
 	function DBController(){
             
-        //        $this->servername = "mysql.hostinger.co.uk"; $this->username = "u570737356_root"; $this->password = "Q0bxU8vZII"; $this->database = "u570737356_it";
+                $this->servername = "ns156.ehosts.com"; $this->username = "dvlopzco_zaher"; $this->password = "bcLUCtm6*U6Q"; $this->database = "dvlopzco_it-ecommerce";
              
              
-		$this->servername = "localhost"; $this->username = "root"; $this->password = ""; $this->database = "IT_Ecommerce";
+	//	$this->servername = "localhost"; $this->username = "root"; $this->password = ""; $this->database = "IT_Ecommerce";
                 
               
                 
