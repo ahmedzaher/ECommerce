@@ -7,21 +7,14 @@ and open the template in the editor.
     Created on : Aug 19, 2015, 12:01:54 AM
     Author     : Ahmed Zaher
 */
-html,body {
- 
+html,body { 
  font-family: 'Droid Sans', sans-serif;
  padding-top:  45px;
+ overflow: hidden; 
 }
 
 
-
-#wait {
-    display: none;
-    position: fixed;
-    margin-top: 20%;
-    margin-left: 50%;  
-    z-index: 10;
-}
+ 
 /*Begin alert */
 .alert-msg {
 	position:fixed;
@@ -35,13 +28,15 @@ html,body {
     cursor: pointer;
 }
 .loginForm , .signupForm{ 
-    background: #222;
+    background: #3a539b;
+    color:#c3cbe1;
+    opacity: 0.95;
     border-radius: 5px;
     position: fixed;
-    top:50px;
+    top:70px;
     right:7px;
     z-index: 9;
-    color:#9d9d9d;
+    
 }
 
 .login-btn {
@@ -241,8 +236,35 @@ margin-top: 2%;
 
 }
 
-.navbar-nav>.active>a {
-    border-radius: 10px;
+ 
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus, .navbar-inverse .navbar-nav>.active>a:hover {
+        background-color: #283a6c;
+        border-radius: 10px;
+        
+}
+.navbar-inverse {
+    background-color: #3A539B;
+    border-color: #344a8b;
+    
+}
+.navbar-inverse .navbar-nav>li>a {
+    color: #c3cbe1;
+}
+
+.navbar-brand {
+    font-family: Copperplate;
+    color: #6c283a !important;
+}
+
+.it-btn {
+    background-color: #3A539B;
+    border-color: #344a8b;
+    color: #e9ebf0;
+}
+
+.it-btn:hover {
+    background-color: #283a6c;
+    color: #fff;
 }
 
 /* Large desktops and laptops */

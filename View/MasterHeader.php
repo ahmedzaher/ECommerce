@@ -1,10 +1,10 @@
 
 <?php
- 
+session_start();
 require_once '../../Controller.php';  
 $dbController = new DBController();
 //$GLOBALS["ROOT_PATH"] = __DIR__;
-session_start();
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -18,6 +18,7 @@ session_start();
         <link href="../../css/bootstrap.min.css" rel="stylesheet">
         <link href="../../css/font-awesome.css" rel="stylesheet">
         <link href="../../css/styles.css" rel="stylesheet">
+        <link href="../../css/loading.css" rel="stylesheet">
         <link href='http://fonts.googleapis.com/css?family=Droid+Sans:400,700' rel='stylesheet' type='text/css'>
         <script src="../../js/jquery-1.11.3.min.js"></script>
         <script src="../../js/bootstrap.min.js"></script>
@@ -33,10 +34,21 @@ session_start();
         }
         $controller = new Controller();
         ?>
-        
-        <div id="wait" class="wait">
-            <i class="fa fa-spinner fa-pulse fa-4x"></i>
+
+        <div class="loading-overlay" id="loading">
+            <div class="sk-cube-grid">
+                <div class="sk-cube sk-cube1"></div>
+                <div class="sk-cube sk-cube2"></div>
+                <div class="sk-cube sk-cube3"></div>
+                <div class="sk-cube sk-cube4"></div>
+                <div class="sk-cube sk-cube5"></div>
+                <div class="sk-cube sk-cube6"></div>
+                <div class="sk-cube sk-cube7"></div>
+                <div class="sk-cube sk-cube8"></div>
+                <div class="sk-cube sk-cube9"></div>
+            </div>
         </div>
+
         <!-- Alerts-->
 <div class="alert-msg"> </div> 
         

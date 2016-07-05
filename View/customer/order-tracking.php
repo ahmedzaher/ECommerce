@@ -18,6 +18,7 @@ require_once '../MasterHeader.php';
     $(".navbar-item").removeClass("active");
     $(".navbar-item").has("a[href='order-tracking.php']").addClass("active");
     $(document).ready(function () {
+        showLoading();
         $.get("../../Controller/controller.php?REQUEST=TRACK_ORDERS", function (data) {
             if(data == "Failed") {
                 
@@ -26,6 +27,7 @@ require_once '../MasterHeader.php';
                 $(".order-tracing-div").html(data);
                 filter(""); // show all
             }
+            hideLoading();
             
         });
         

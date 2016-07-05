@@ -5,15 +5,14 @@
  */
 var access = 'guest';
  
-$(document).ready(function () { 
-  //BEGIN LOGIN AND SIGN UP SCRIPTS
- 
+$(document).ready(function () {  
+       hideLoading();
      // view login form
      $(document).on('click','#login-header-btn',function(){ 
         if($("#logInForm").css("display") !== "none") {
-            $("#logInForm").fadeOut("out");
+            $("#logInForm").fadeOut("slow");
         } else if ($("#signupForm").css("display") !== "none") {
-            $("#signupForm").fadeOut("out");
+            $("#signupForm").fadeOut("slow");
         } else 
             $("#logInForm").fadeIn("slow");
     });
@@ -46,9 +45,10 @@ $(document).ready(function () {
     $(".login-btn").click(function(){
         var email = $("#login-email").val(); 
         var password = $("#login-password").val();
-        if( ! isValidLoginForm(email,password )) {
+        var validationResult = checkLoginForm(email,password );
+        if( validationResult["msg"] !== "OK") {
             
-            showError("Not valid data")
+            showError(validationResult["msg"]);
         } else {
             $.post("../../Controller/controller.php",{REQUEST:"LOGIN",email:email,password:password},function(data){
                 if( data === "Failed") {
@@ -65,10 +65,14 @@ $(document).ready(function () {
 
     //signup validation and process 
     $(".signup-btn").click(function(){
-        if(! isValidSignupForm()) {
-             showError("Not valid data")
+        var validationResult = [];
+        validationResult = checkSignupForm();
+        if( validationResult["msg"] != "OK") {
+            
+             showError(validationResult["msg"]);
         } 
        else {
+            showLoading();
             $.post("../../Controller/controller.php",
                     {
                         REQUEST:"SIGNUP",
@@ -85,10 +89,8 @@ $(document).ready(function () {
                     else {
                         showError("Rigistration Failed");
                         return;
-                    }  
-                    
-                 
-                
+                    }   
+                    hideLoading();
             });
             
         }
@@ -102,11 +104,22 @@ $(document).ready(function () {
     });
 
     $("#phone").focusout(function(){
-        
+        if(isValidPhone() ($(this).val()) ) {
+                $(this).removeClass("notValid");
+            } else {
+                $(this).addClass("notValid");
+            }
     });
 
     $("#signup-confirm-password").focusout(function() {
-        
+        var password = $("#signup-password").val();
+         var confirmPassword = $("#signup-confirm-password").val();
+         
+         if(isValidConfirmedPassword(password,confirmPassword)) {
+             $(this).removeClass("notValid");
+         } else {
+              $(this).addClass("notValid");
+         }
     });
 
      
@@ -117,6 +130,7 @@ $(document).ready(function () {
     //add to cart button
     
     $(document).on('click', '.addToCartBtn', function () { 
+        showLoading();
         var product_id = $(this).attr("product-id") ;
         var order_quantity = 1;
         $.post("../../Controller/controller.php",
@@ -124,22 +138,19 @@ $(document).ready(function () {
             REQUEST:"ADD_TO_CART",
             product_id: product_id ,
             order_quantity:order_quantity 
-        },function(data){ 
-            if(data === "Failed") {
-                showError("cannot be added"); 
+        },function(data){  
+            if(data !== "OK") {
+                showError(data); 
             }
             else {
                 showSuccess("Item added to cart");
                 loadProducts($('#categorySelect').val(), $('#subCategorySelect').val());
             }
+            hideLoading();
         }); 
     });
 
-    $(document).ajaxStart(function () {
-        $('#wait').show();
-    }).ajaxComplete(function () {
-        $('#wait').hide();
-    });
+    
     $('.categoryFilter').change(function () {
         var categoriesURL = getCategoryFilterURL();
         var subCategoriesURL = getSubCategoryFilterURL();
@@ -159,8 +170,7 @@ $(document).ready(function () {
         }
         if (categoriesURL === "") {
             categoriesURL = "all";
-        }
-        console.log("1" + categoriesURL);
+        } 
         return categoriesURL;
     }
     function getSubCategoryFilterURL() {
@@ -179,63 +189,8 @@ $(document).ready(function () {
 
 }); 
 
-    function isValidLoginForm(email, password) {
-        if(isValidEmail(email) && isValidPassword(password)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    function isValidSignupForm() {
-        var email = $("#signup-email").val(),
-            password = $("#signup-password").val(),
-            confirmPassword = $("#signup-confirm-password").val(),
-            phone = $("#signup-phone").val(),
-            firstName = $("#signup-firstName").val(),
-            lastName = $("#signup-lastName").val();
-
-            if(isValidEmail(email) && isValidPassword(password) && isValidConfirmedPassword(password,confirmPassword) && isValidPhone(phone) && isValidName(firstName) && isValidName(lastName)) {
-                    return true;
-            } else {
-                    return false;
-            }
-
-    }
-     function isValidEmail(email) {
-        var emailPattern = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-        
-        if(! emailPattern.test(email) ){ 
-            return false;
-        }
-        else { 
-            return true;
-        }
-     }
-     function isValidPhone(phone) {
-        var phonePattern = /[0-9]{10,15}/; 
-        if(! phonePattern.test(phone) ){ 
-            return false;
-        }
-        else { 
-            return true;
-        }
-     }
-     function isValidPassword(password) {
-        if(password.length < 1)
-            return false;
-        return true;
-     }
-     function isValidConfirmedPassword(password , confirmPasswrod) {
-        if(confirmPasswrod == "" || confirmPasswrod == null || confirmPasswrod != password) { 
-            return false;
-        }
-        else {  
-            return true;
-        }
-     }
-     function isValidName(name) {
-        return true;
-     }
+   
+    
 function showSuccess(msg) {
 
 	$(".alert-msg").html( " <div class='alert alert-success'> "
@@ -244,8 +199,19 @@ function showSuccess(msg) {
 		+"<strong>Success! </strong> "+ msg +" &nbsp;&nbsp; </div> ");
 }
 function showError(msg) {
-	$(".alert-msg").html( " <div class='alert alert-danger'> "
+	$(".alert-msg").html( " <div class='alert alert-danger '> "
 		+"<a href='#' class='close' data-dismiss='alert'"
 		+" aria-label='close'>&times;</a>"
 		+"<strong>Error! </strong> "+ msg +"  &nbsp;&nbsp;</div> ");
+}
+
+function showLoading() {
+    $(".loading-overlay").fadeIn(1000);
+    $("body").css("overflow", "hide");
+
+}
+
+function hideLoading() {
+    $(".loading-overlay").fadeOut(1000);
+    $("body").css("overflow", "auto");
 }

@@ -2,39 +2,7 @@
 require_once '../MasterHeader.php';
 
 
-//load products
-if (isset($_GET['ORDER']) && $_GET['ORDER'] === 'RequestProducts') {
-    ob_end_clean();
-    $products = $controller->getProducts($_GET['category'], $_GET['sub-category'], "false"); //false to hide 0 quantity products
-    for ($i = 0; $i < count($products); $i++) {
-        ?>
-        <div class="productOuter col-md-4 col-sm-6">
-            <div class="product col-md-offset-1 col-md-11 "> 
-                <div class="productPicture" style=" ">
-                    <img class="img-responsive" src='<?php echo "../../".$products[$i]->picture ?>'> 
-                </div>
-                <div class="productTitle" style=" ">
-                    <?php echo $products[$i]->name ?>
-                </div>
-                <div class="productDescription" style=" ">
-                    <?php echo nl2br($products[$i]->description) ?>
-                </div> 
-                <div class="productPrice" style=" ">
-                    $ <?php echo $products[$i]->price ?>
-                </div>
-
-                <div class="productOrder" style="">
-                    <button class="addToCartBtn btn btn-primary col-xs-offset-1 col-xs-10" product-id='<?php echo $products[$i]->id; ?>' quantity='<?php echo $products[$i]->id; ?>' >
-                        <i class="fa fa-shopping-cart" style="margin-right:7px"></i>
-                        Add To Cart
-                    </button>
-                </div>
-            </div>
-        </div>
-        <?php
-    }
-    return;
-}
+ 
 
 //add to cart
 if (isset($_GET['ORDER']) && $_GET['ORDER'] === 'AddToCart') {
@@ -99,9 +67,11 @@ $subCategories = $controller->getAllSubCategories();
     });
     //loadProducts
     function loadProducts(categoryFilterURL, subCategoryFilterURL) {
+        showLoading();
         $.get( "../../Controller/controller.php" + "?REQUEST=LOAD_SHOPPING_PRODUCTS&category=" + categoryFilterURL + "&sub-category=" + subCategoryFilterURL,
                 function (data) {
                     $('#products').empty().html(data);
+                    hideLoading();
                 });
     }
 

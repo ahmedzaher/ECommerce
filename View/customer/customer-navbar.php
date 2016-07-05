@@ -12,7 +12,7 @@ if ((isset($_SESSION['ACCESS_TYPE']) && $_SESSION['ACCESS_TYPE'] == "CUSTOMER"))
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>                        
             </button>
-            <a class="navbar-brand" href="#">IT</a>
+            <a class="navbar-brand" href="#">IT-ECOMMERCE</a>
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
             <ul class="nav navbar-nav">

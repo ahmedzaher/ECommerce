@@ -51,6 +51,11 @@ if (isset($_POST["REQUEST"]) && $_POST["REQUEST"] == "LOGOUT") {
 
     // destroy the session
     session_destroy();
+    
+    //redirect to shpping
+    $homePage = "shopping.php";
+    header('Location: ../View/customer/'.$homePage);
+    die();
 }
 
 
@@ -87,7 +92,7 @@ if (isset($_GET["REQUEST"]) && $_GET["REQUEST"] == "LOAD_SHOPPING_PRODUCTS") {
                 </div>
 
                 <div class="productOrder" style="">
-                    <button class="addToCartBtn btn btn-primary col-xs-offset-1 col-xs-10" product-id='<?php echo $products[$i]->id; ?>' quantity='<?php echo $products[$i]->id; ?>' >
+                    <button class="addToCartBtn btn it-btn  col-xs-offset-1 col-xs-10" product-id='<?php echo $products[$i]->id; ?>' quantity='<?php echo $products[$i]->id; ?>' >
                         <i class="fa fa-shopping-cart" style="margin-right:7px"></i>
                         Add To Cart
                     </button>
@@ -138,13 +143,18 @@ if (isset($_GET["REQUEST"]) && $_GET["REQUEST"] == "LOAD_CART") {
 
 if (isset($_POST["REQUEST"]) && $_POST["REQUEST"] == "ADD_TO_CART") {
     session_start();
-    $customer_id = unserialize($_SESSION["customer"])->id;
+    if(!isset($_SESSION["customer"])) {
+        echo "You have to log in";
+        return;
+    }
+    $customer_id = unserialize($_SESSION["customer"])->id; 
+    
     $product_id = $_POST["product_id"];
     $order_quantity = $_POST["order_quantity"];
     $product = Product::getProduct($dbController, $product_id);
      
     if (Order::placeOrder($dbController, $customer_id, $product->id, $order_quantity) == false) { // create order row
-        echo "Failed1";
+        echo "Failed";
         return;
     }
 

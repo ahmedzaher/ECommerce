@@ -96,15 +96,18 @@ else {
                 ordersIds += "|";
             }
         }
-
+        
         $.get("../../Controller/controller.php?REQUEST=PURCHASE&ordersIds=" + ordersIds, function (data) {
             if (data === "OK") {
-                alert("Done");
+                showSuccess()("Done");
 
             } else {
-                alert("Failed");
+                showError()("Failed");
             }
             document.location.assign("shopping.php");
         });
     });
 </script>
+<?php 
+require_once '../MasterFooter.php';
+?>

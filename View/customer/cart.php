@@ -22,17 +22,21 @@ require_once '../MasterHeader.php';
         loadCartOrders();
     });
     function loadCartOrders() {
-          $.get( "../../Controller/controller.php" + "?REQUEST=LOAD_CART", function (data) {
+        showLoading();
+          $.get( "../../Controller/controller.php" + "?REQUEST=LOAD_CART", function (data) { 
                 if(data === "Empty"){
-                    $("#emptyCartMsg").show();      
+                    $("#emptyCartMsg").show(); 
+                    
                 }
                  else {
                      $('.cartOrders').html(data);
                      $("#cartCheckoutBtn").show();
                  }
+                 hideLoading();
                 });      
     }
     function removeFromCart(orderId, orderQuantity, productId) {
+        showLoading();
         $.get( "../../Controller/controller.php", 
             { 
                 REQUEST: "REMOVE_FROM_CART",
@@ -51,6 +55,7 @@ require_once '../MasterHeader.php';
                     $("#cartCheckoutBtn").hide();
                     $("#emptyCartMsg").show(); 
                 }
+                hideLoading();
                 
         });
     }
